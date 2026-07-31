@@ -29,6 +29,7 @@ public func run(
     command: URL,
     arguments: [String],
     environment: [String: String]? = nil,
+    currentDirectory: URL? = nil,
     outputPipe: Pipe? = nil,
     errorPipe: Pipe? = nil
 ) async throws {
@@ -37,6 +38,7 @@ public func run(
     task.executableURL = command
     task.arguments = arguments
     task.environment = environment
+    if let currentDirectory { task.currentDirectoryURL = currentDirectory }
     if let outputPipe { task.standardOutput = outputPipe }
     if let errorPipe { task.standardError = errorPipe }
 
